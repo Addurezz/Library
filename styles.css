@@ -23,7 +23,6 @@ h2 {
     border: 1px solid;
     display: grid;
     flex-direction: column;
-    justify-content: center;
     justify-items: center;
     padding: 10px;
 }
@@ -106,4 +105,20 @@ form {
 
 button:hover {
     transform: scale(1.05);
+}
+
+.bookButtonDiv {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.deleteBookBtn {
+    order: 2;
+    justify-self: flex-end;
+}
+
+.changeReadBtn {
+    order: 1;
+    justify-self; center
 }

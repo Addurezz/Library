@@ -24,29 +24,55 @@ const addBookToLibrary = (userBook) => {
     myLibrary.push(userBook);
 }
 
-// display books in DIVs
-const displayBooks = (bookInput) => {
+// display book cards
+const displayBooks = ((bookInput) => {
     container.innerHTML = "";
-    for (item in myLibrary) {
+    myLibrary.forEach((item, index) => {
         const bookInfoContainer = document.createElement("div");
         bookInfoContainer.setAttribute("class","bookInfo")
         const titleInfo = document.createElement("h2");
         const pagesInfo = document.createElement("p");
         const authorInfo = document.createElement("p");
         const isRead = document.createElement("p");
+        const bookButtonDiv = document.createElement("div");
+        bookButtonDiv.setAttribute("class","bookButtonDiv")
 
-        titleInfo.textContent = myLibrary[item].title;
-        authorInfo.textContent = myLibrary[item].author;
-        pagesInfo.textContent = `${myLibrary[item].pages} pages`;
-        isRead.textContent = myLibrary[item].read;
+        titleInfo.textContent = item.title;
+        authorInfo.textContent = item.author;
+        pagesInfo.textContent = `${item.pages} pages`;
+        isRead.textContent = item.read;
 
+        // delete book card
+        const deleteBookBtn = document.createElement("button");
+        deleteBookBtn.textContent = "Delete"
+        deleteBookBtn.setAttribute("class","deleteBookBtn")
+
+        deleteBookBtn.addEventListener("click", () => {
+            myLibrary.splice(index,index+1);
+            displayBooks()
+        })
+
+        // change read-status
+        const changeReadBtn = document.createElement("button"); 
+        changeReadBtn.setAttribute("class","changeReadBtn");
+        changeReadBtn.textContent = item.read === "Read: Yes" ? "Not Read" : "Read";
+        changeReadBtn.addEventListener("click", () => {
+            item.read = item.read === "Read: Yes" ? "Read: No": "Read: Yes";
+            displayBooks();
+        })
+
+
+        // adding elements to HTML
+        bookButtonDiv.appendChild(deleteBookBtn);
+        bookButtonDiv.appendChild(changeReadBtn);
         bookInfoContainer.appendChild(titleInfo);
         bookInfoContainer.appendChild(authorInfo);
         bookInfoContainer.appendChild(pagesInfo);
         bookInfoContainer.appendChild(isRead);
+        bookInfoContainer.appendChild(bookButtonDiv);
         container.appendChild(bookInfoContainer);
-    }
-}
+    })
+});
 
 // add book button
 addBookBtn.addEventListener("click", () => {
