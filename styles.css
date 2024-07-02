@@ -109,16 +109,15 @@ button:hover {
 
 .bookButtonDiv {
     display: flex;
-    width: 100%;
     justify-content: space-between;
+    width: 100%;
 }
 
 .deleteBookBtn {
     order: 2;
-    justify-self: flex-end;
 }
 
 .changeReadBtn {
     order: 1;
-    justify-self; center
 }
+

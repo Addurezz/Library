@@ -45,10 +45,12 @@ const displayBooks = ((bookInput) => {
         // delete book card
         const deleteBookBtn = document.createElement("button");
         deleteBookBtn.textContent = "Delete"
-        deleteBookBtn.setAttribute("class","deleteBookBtn")
-
-        deleteBookBtn.addEventListener("click", () => {
-            myLibrary.splice(index,index+1);
+        deleteBookBtn.setAttribute("class","deleteBookBtn");
+        deleteBookBtn.setAttribute("data-index",index)
+     
+        deleteBookBtn.addEventListener("click", (e) => {
+            const i = e.target.getAttribute("data-index");
+            myLibrary.splice(i,1);
             displayBooks()
         })
 
